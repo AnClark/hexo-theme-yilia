@@ -1,4 +1,11 @@
-<% if (pagination == 2){ %>
+<!-- 文章列表页面 -->
+<!-- 传入的参数pagination似乎决定了archive页面（文章列表）会显示什么内容。
+    然而实际发现，该参数其实只能用来区分index和子分类/子标签页面，
+    因为config.category和config.tag并不存在。
+ -->
+
+<% if (pagination === "index"){ %>
+  <!-- ◆情形一：专门用于首页展示文章 -->
   <% page.posts.each(function(post){ %>
     <%- partial('article', {post: post, index: true}) %>
   <% }) %>
@@ -11,6 +18,7 @@
     </nav>
   <% } %>
 <% } else { %>
+  <!-- ◆情形二：其他文章列表，包括按分类、按标签、按年/月-->
   <% var last; %>
   <% page.posts.each(function(post, i){ %>
     <% var year = post.date.year(); %>

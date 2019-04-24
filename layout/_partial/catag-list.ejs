@@ -1,0 +1,27 @@
+<!-- catag-list.ejs： 分类和标签的汇总页面 -->
+
+<h1>
+    <i class="icon icon-price-tags">
+    <% if (type === "categories") { %>
+        分类列表
+    <% } else if (type === "tags") { %>
+        标签列表
+    <% } %>
+</h1>
+
+<% if (type === "categories") { %>
+    <div class="tagcloud">
+    <% site.categories.forEach(function(category) {%>
+        <%- String(category.name) %>
+
+    <% }); %>
+    </div>
+<% } else if (type === "tags") { %>
+    <div class="tagcloud">
+        <ul>
+        <% site.tags.forEach(function(tag) { %>
+            <li><%- tag.name %></li>
+        <% });%>
+        </ul>
+    </div>
+<% } %>

@@ -1,1 +1,11 @@
-<%- partial('_partial/article', {post: page, index: false}) %>
+<!-- page.ejs ：使用hexo new page创建的页面，用这个模板来显示 -->
+<!-- 理论上category和tag的汇总页应在这里编写 -->
+<!-- 逻辑：若URL中有category(ies)或tag(s)，则显示汇总页面 -->
+
+<% if (page.type === "category" || page.type === "categories") { %>
+    <%- partial('_partial/catag-list', {type: "categories"}) %>
+<% } else if (page.type === "tag" || page.type === "tags"){ %>
+    <%- partial('_partial/catag-list', {type: "tags"}) %>
+<% } else { %>
+    <%- partial('_partial/article', {post: page, index: false}) %>
+<% } %>
